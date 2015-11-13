@@ -16,6 +16,7 @@ var
 require('./helpers/query-types');
 
 // Register query helpers
+/*
 require('./helpers/query/action');
 require('./helpers/query/alias');
 require('./helpers/query/boolean-helpers');
@@ -46,21 +47,26 @@ require('./helpers/query/table');
 require('./helpers/query/updates');
 require('./helpers/query/values');
 require('./helpers/query/view');
+*/
+require('./helpers/query/alias');
+require('./helpers/query/columns');
+require('./helpers/query/table');
 require('./helpers/query/where');
+/*
 require('./helpers/query/window');
 require('./helpers/query/with');
-
+*/
 // Register conditional helpers
 require('./helpers/conditional');
 
 // Register update helpers
-require('./helpers/update');
+// require('./helpers/update');
 
 // Register column definition helpers
-require('./helpers/column-definitions');
+// require('./helpers/column-definitions');
 
 // Register column action helpers
-require('./helpers/actions');
+// require('./helpers/actions');
 
 module.exports.sql = build;
 module.exports.toQuery = function() {

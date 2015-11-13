@@ -2,12 +2,12 @@
 var queryTypes = require('../lib/query-types');
 
 queryTypes.add( 'select', [
-  '{with} select {expression} {distinct}'
-, '{columns} {over} {table} {alias}'
-, '{joins} {join} {innerJoin} {leftJoin} {leftOuterJoin} {fullOuterJoin} {crossOuterJoin}'
-, '{where} {groupBy} {having} {window} {order} {limit} {offset} {for}'
+  'FOR'
+, '{alias} {table}'
+, '{where} {order} {limit} {offset}'
 ].join(' '));
 
+/*
 queryTypes.add(
   'insert'
 , '{with} insert into {table} {columns} {values} {expression} {returning}'
@@ -62,6 +62,6 @@ queryTypes.add(
   'except'
 , '{with} {queries}'
 );
-
+*/
 queryTypes.add('function', '{function}( {expression} )');
 queryTypes.add('expression', '{expression}');
