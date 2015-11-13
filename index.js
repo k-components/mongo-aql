@@ -35,8 +35,6 @@ require('./helpers/query/if-exists');
 require('./helpers/query/if-not-exists');
 require('./helpers/query/joins');
 require('./helpers/query/joins-dep');
-require('./helpers/query/limit');
-require('./helpers/query/offset');
 require('./helpers/query/only');
 require('./helpers/query/order');
 require('./helpers/query/over');
@@ -48,6 +46,9 @@ require('./helpers/query/updates');
 require('./helpers/query/values');
 require('./helpers/query/view');
 */
+require('./helpers/query/order');
+require('./helpers/query/limit');
+require('./helpers/query/offset');
 require('./helpers/query/alias');
 require('./helpers/query/columns');
 require('./helpers/query/table');
