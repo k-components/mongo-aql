@@ -2,7 +2,6 @@
 var helpers = require('../../lib/query-helpers');
 
 helpers.register('limit', function(limit, values, query){
-	console.log('limit', arguments);
   if ( Array.isArray(limit) && limit.length === 2 ) {
     return " LIMIT @" + values.push(limit[0]) + ", @" + values.push(limit[1]);
   }

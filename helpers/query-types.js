@@ -4,7 +4,7 @@ var queryTypes = require('../lib/query-types');
 queryTypes.add( 'select', [
   'FOR'
 , '{alias} {table}'
-, '{where} {order} {limit}'
+, '{where} {limit} {order} {link} {return}'
 ].join(' '));
 
 /*

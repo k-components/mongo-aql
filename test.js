@@ -9,7 +9,9 @@ var usersQuery = {
 		pim: "pim"
 	},
 	limit: 3,
-	order: { pim: -1 }
+	order: { pim: -1 },
+	link: [ { key: "city", collection: "cities" } ],
+	return: true
 };
 
 console.log();
