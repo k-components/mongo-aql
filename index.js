@@ -43,9 +43,9 @@ require('./helpers/query/queries');
 require('./helpers/query/returning');
 require('./helpers/query/table');
 require('./helpers/query/updates');
-require('./helpers/query/values');
 require('./helpers/query/view');
 */
+require('./helpers/query/values');
 require('./helpers/query/order');
 require('./helpers/query/limit');
 require('./helpers/query/offset');

@@ -2,6 +2,7 @@ var helpers = require('../../lib/query-helpers');
 var queryBuilder = require('../../lib/query-builder');
 
 helpers.register('values', function(values, valuesArray, query){
+  console.log('values', arguments);
   if (typeof values != 'object') throw new Error('Invalid values input in query properties');
 
   if (query.type === 'update')
@@ -29,7 +30,7 @@ helpers.register('values', function(values, valuesArray, query){
       } else if (typeof value[ keys[i] ] == 'object' && 'type' in value[ keys[i] ]) {
         result.push('(' + queryBuilder( value[ keys[i] ], valuesArray ) + ')');
       } else {
-        result.push('$' + valuesArray.push(value[keys[i]]));
+        result.push('@' + valuesArray.push(value[keys[i]]));
       }
     }
     return '(' + result.join(', ') + ')';

@@ -16,6 +16,6 @@ console.log();
 var res = builder.sql(usersQuery);
 
 console.log();
-console.log(res.query);
+console.log(res);
 console.log();
 process.exit();
