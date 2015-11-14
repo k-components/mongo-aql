@@ -1,12 +1,13 @@
 
 var helpers = require('../../lib/query-helpers');
+var utils = require('../../lib/utils');
 
 helpers.register('limit', function(limit, values, query){
   if ( Array.isArray(limit) && limit.length === 2 ) {
-    return " LIMIT @" + values.push(limit[0]) + ", @" + values.push(limit[1]);
+    return " LIMIT " + utils.newVar(limit[0], values) + ", " + utils.newVar(limit[1], values);
   }
   else if ( typeof limit === 'number' )
-    return " LIMIT @" + values.push(limit);
+    return " LIMIT " + utils.newVar(limit, values);
   else
     throw new Error('Invalid limit type `' + typeof limit  + '` for query helper `limit`. Limit must be number or \'all\'');
 });

@@ -2,7 +2,6 @@
 var helpers = require('../../lib/query-helpers');
 
 helpers.register('return', function(link, values, query) {
-	console.log('return', arguments);
 	var link = query.link;
 	res = 'RETURN '
 

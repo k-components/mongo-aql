@@ -13,9 +13,7 @@ var queryBuilder = require('../lib/query-builder');
  * @param value  {Mixed}   - What the column should be equal to
  */
 conditionals.add('$equals', function(column, value, values, collection, original){
-  var equator = '=';
-
-  return column + ' ' + ((value == 'true' || value == 'false') ? 'is' : '=') + ' ' + value;
+  return column + ' ' + ((value == 'true' || value == 'false') ? 'is' : '==') + ' ' + value;
 });
 
 /**
@@ -112,7 +110,7 @@ conditionals.add('$ilike', function(column, value, values, collection, original)
 conditionals.add('$in', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
     return column + ' in (' + set.map( function(val){
-      return '$' + values.push( val );
+      return utils.newVar(val, values)
     }).join(', ') + ')';
   }
 
@@ -134,7 +132,7 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
 conditionals.add('$nin', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
     return column + ' not in (' + set.map( function(val){
-      return '$' + values.push( val );
+      return utils.newVar(val, values)
     }).join(', ') + ')';
   }
 
@@ -156,7 +154,7 @@ conditionals.add('$custom_array', { cascade: false }, function(column, value, va
 
   return output.replace(
     /\$\d+/g, function(match) {
-    return '$' + values.push( value[match.slice(1)] );
+    return utils.newVar(value[match.slice(1)], values)
   });
 });
 

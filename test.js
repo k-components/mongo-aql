@@ -4,13 +4,11 @@ var usersQuery = {
 	table: 'users',
 	alias: 'u',
 	where: {
-		$or: { id: 5, name: 'Bob' },
-		joo: { $gte: 4 },
-		pim: "pim"
+		age: 55,
 	},
 	limit: 3,
-	order: { pim: -1 },
-	link: [ { key: "city", collection: "cities" } ],
+	order: { name: -1 },
+	link: [ { key: "city", collection: "cities" }, { key: "like", collection: "likes" } ],
 	return: true
 };
 

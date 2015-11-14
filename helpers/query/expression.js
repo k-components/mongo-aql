@@ -17,7 +17,7 @@ helpers.register('expression', function(exp, values, query){
       for (var i = 0, l = exp.values.length; i < l; ++i){
         val = val.replace(
           RegExp('(\\$)' + (i+1) + '(\\W|$)','g')
-        , '$1' + values.push(exp.values[i]) + '$2'
+        , '$1' + utils.newVar(exp.values[i], values) + '$2'
         );
       }
     }
