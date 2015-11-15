@@ -8,7 +8,7 @@ var usersQuery = {
 	},
 	limit: 3,
 	order: { name: -1 },
-	link: [ { key: "city", collection: "cities" }, { key: "like", collection: "likes" } ],
+	embed: [ { key: "city", collection: "cities" }, { key: "like", collection: "likes" } ],
 	return: true
 };
 

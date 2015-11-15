@@ -1,15 +1,15 @@
 
 var helpers = require('../../lib/query-helpers');
 
-helpers.register('return', function(link, values, query) {
-	var link = query.link;
+helpers.register('return', function(embed, values, query) {
+	var embed = query.embed;
 	res = 'RETURN '
 
-	if (link && link.length) {
+	if (embed && embed.length) {
 		res += 'merge(u';
 
-		for (var i = 0; i < link.length; i++) {
-			res += ', { ' + link[i].key + ': ' + link[i].cname + ' }';
+		for (var i = 0; i < embed.length; i++) {
+			res += ', { ' + embed[i].key + ': ' + embed[i].cname + ' }';
 		}	
 		res += ')';
 	}

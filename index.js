@@ -10,7 +10,7 @@ require('./helpers/query-types');
 require('./helpers/query/values');
 require('./helpers/query/order');
 require('./helpers/query/limit');
-require('./helpers/query/link');
+require('./helpers/query/embed');
 require('./helpers/query/offset');
 require('./helpers/query/alias');
 require('./helpers/query/columns');
