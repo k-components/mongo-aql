@@ -12,8 +12,16 @@ var usersQuery = {
 	return: true
 };
 
+var q2 = {
+	age: 55,
+	"$limit": 3,
+	"$orderby": { name: 1 },
+	"@city": "cities",
+	"@like": "likes"
+}
+
 console.log();
-var res = builder.sql(usersQuery);
+var res = builder('users', q2);
 
 console.log();
 console.log(res);
