@@ -1,7 +1,7 @@
 {
-  "name": "mongo-sql",
-  "version": "2.7.1",
-  "description": "A mongo-like interface for sql generation, postgres-style",
+  "name": "mongo-aql",
+  "version": "0.1.0",
+  "description": "A mongo-like interface for aql generation",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/goodybag/mongo-sql.git"
+    "url": "git@github.com:k-components/mongo-aql.git"
   },
   "keywords": [
-    "postgres",
-    "postgresql",
-    "node-pg",
     "mongo",
-    "sql"
+    "arango",
+    "arangodb",
+    "aql"
   ],
-  "author": "John Fawcett",
+  "author": "Ilkka Huotari",
+  "contributors": ["John Fawcett"],
   "license": "BSD",
   "devDependencies": {
     "browserify": "^5.9.1",
