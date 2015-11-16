@@ -6,6 +6,7 @@
 
 var conditionals = require('../lib/conditional-helpers');
 var queryBuilder = require('../lib/query-builder');
+var utils = require('../lib/utils');
 
 /**
  * Querying where column is equal to a value
