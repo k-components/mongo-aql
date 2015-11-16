@@ -13,7 +13,7 @@ var usersQuery = {
 };
 
 var q2 = {
-	age: 55,
+	foo: { bar: 'baz', bar2: 'baz2' },
 	"$limit": 3,
 	"$orderby": { name: 1 },
 	"@city": "cities",
