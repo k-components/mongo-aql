@@ -1,7 +1,15 @@
 # mongo-aql - JSON to AQL
 
+##Install
+
+```
+$ npm i mongo-aql --save
+```
+
+##Usage
+
 ```javascript
-var builder = require('./');
+var builder = require('mongo-aql');
 
 var q = {
 	foo: { bar: 'baz', bar2: 'baz2' },
@@ -30,3 +38,7 @@ Result:
  }
 
 ```
+
+##License
+
+BSD
