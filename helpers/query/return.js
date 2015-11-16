@@ -6,7 +6,7 @@ helpers.register('return', function(embed, values, query) {
 	res = 'RETURN '
 
 	if (embed && embed.length) {
-		res += 'merge(u';
+		res += 'MERGE(' + query.__defaultTable;
 
 		for (var i = 0; i < embed.length; i++) {
 			res += ', { ' + embed[i].key + ': ' + embed[i].cname + ' }';

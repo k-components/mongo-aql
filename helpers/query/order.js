@@ -9,7 +9,7 @@ helpers.register('order', function(order, values, query){
   var output = "SORT ";
 
   for (var key in order) {
-    output += utils.quoteObject(key, query.__defaultTable) + ' ' + (order[key] === 1? 'ASC': 'DESC') + ', ';
+    output += query.__defaultTable + '.' + utils.newVar(key, values) + ' ' + (order[key] === 1? 'ASC': 'DESC') + ', ';
   }
 
   if (output === "SORT ") return "";

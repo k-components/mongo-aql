@@ -110,12 +110,15 @@ conditionals.add('$ilike', function(column, value, values, collection, original)
  */
 conditionals.add('$in', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
-    return column + ' in [' + set.map( function(val){
+    return utils.newVar(column, values) + ' in [' + set.map( function(val){
       return utils.newVar(val, values)
     }).join(', ') + ']';
   }
+  else {
+    return '';
+  }
 
-  return column + ' in [' + queryBuilder(set, values).toString() + ']';
+  // return utils.newVar(column, values) + ' in [' + queryBuilder(set, values).toString() + ']';
 });
 
 /**
@@ -132,57 +135,14 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
  */
 conditionals.add('$nin', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
-    return column + ' not in (' + set.map( function(val){
+    return utils.newVar(column, values) + ' not in (' + set.map( function(val){
       return utils.newVar(val, values)
     }).join(', ') + ')';
   }
+  else {
+    return '';
+  }
 
-  return column + ' not in (' + queryBuilder(set, values).toString() + ')';
+  // return column + ' not in (' + queryBuilder(set, values).toString() + ')';
 });
 
-conditionals.add('$custom', { cascade: false }, function(column, value, values, collection, original){
-  if (Array.isArray(value))
-    return conditionals.get('$custom_array').fn( column, value, values, collection );
-
-  if (typeof value == 'object')
-    return conditionals.get('$custom_object').fn( column, value, values, collection );
-
-  throw new Error('Invalid Custom Value Input');
-});
-
-conditionals.add('$custom_array', { cascade: false }, function(column, value, values, collection, original){
-  var output = value[0];
-
-  return output.replace(
-    /\$\d+/g, function(match) {
-    return utils.newVar(value[match.slice(1)], values)
-  });
-});
-
-conditionals.add('$custom_object', { cascade: false }, function(column, value, values, collection, original){
-  return conditionals.get('$custom_array').fn(column, [value.value].concat(value.values), values, collection);
-});
-
-conditionals.add('$years_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " year";
-});
-
-conditionals.add('$months_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " month";
-});
-
-conditionals.add('$days_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " day";
-});
-
-conditionals.add('$hours_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " hour";
-});
-
-conditionals.add('$minutes_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " minute";
-});
-
-conditionals.add('$seconds_ago', function(column, value, values, collection, original){
-  return column + " >= now() - interval " + value + " second";
-});

@@ -14,6 +14,7 @@ var q2 = {
     "foo": { "bar != 'foo' || 1": "baz", "yo": "man" },
     "$limit": 10,
     "$skip": 100,
+    "testing": { $in: [1,2,3,4,5,6,7,8,9] },
     "$lt": { "bar": 25 },
     "$gt": { "baz": 39, "bart": 9 },
     "$ne": { "some": "value" },
@@ -24,6 +25,35 @@ var q2 = {
     "@cityXX) REMOVE u IN users /* again */ // abc //": "cities"
 }
 
-var res = builder('users', q);
+
+var q3 = {
+	xx: { yyr: 'zz' },
+	"$limit": 10,
+	"$skip": 100,
+	"$orderby": { name: 1, name2: 1 },
+	"@city": "cities"
+}
+
+var q4 = {
+    "$eq": { "foobar" : [ "1","2","3" ] }
+}
+
+var q5 = {
+    "foobar": { "$eq" : [ "1","2","3" ] }
+}
+
+var q6 = {
+    "foobar": [ "1","2","3" ] 
+}
+
+var q7 = {
+    "$ne": { "some": "value" }
+}
+
+var q8 = {
+    "foobar": { "$in": 1 }
+}
+
+var res = builder('users', q4);
 console.log(res);
 process.exit();
