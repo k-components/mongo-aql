@@ -15,7 +15,7 @@ var usersQuery = {
 var q2 = {
 	foo: { bar: 'baz', bar2: 'baz2' },
 	"$limit": 3,
-	"$orderby": { name: 1 },
+	"$orderby": { name: 1, name2: 1 },
 	"@city": "cities",
 	"@like": "likes"
 }

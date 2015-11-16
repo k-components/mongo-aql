@@ -2,13 +2,13 @@ var helpers = require('../../lib/query-helpers');
 var utils = require('../../lib/utils');
 
 helpers.register('order', function(order, values, query){
+  if (typeof order !== 'object') {
+    throw new Error('Invalid orderby type `' + typeof limit  + '` - it should bean object');
+  }
+
   var output = "SORT ";
 
-  if (typeof order === 'string') return output + order;
-
-  if (Array.isArray(order)) return output + order.join(', ');
-
-  for (var key in order){
+  for (var key in order) {
     output += utils.quoteObject(key, query.__defaultTable) + ' ' + (order[key] === 1? 'ASC': 'DESC') + ', ';
   }
 
