@@ -2,7 +2,6 @@ var helpers = require('../../lib/query-helpers');
 var queryBuilder = require('../../lib/query-builder');
 
 helpers.register('values', function(values, valuesArray, query){
-  console.log('values', arguments);
   if (typeof values != 'object') throw new Error('Invalid values input in query properties');
 
   if (query.type === 'update')
