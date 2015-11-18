@@ -22,3 +22,4 @@ require('./helpers/query/return');
 require('./helpers/conditional');
 
 module.exports = build;
+module.exports.graph = require('./lib/query-builder-graph');

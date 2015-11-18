@@ -5,8 +5,7 @@ var q = {
 	"$limit": 10,
 	"$skip": 100,
 	"$orderby": { name: 1, name2: 1 },
-	"@city": "cities",
-	"@like": "likes"
+	"@city": "cities"
 }
 
 var q2 = {
@@ -18,7 +17,6 @@ var q2 = {
     "$lt": { "bar": 25 },
     "$gt": { "baz": 39, "bart": 9 },
     "$ne": { "some": "value" },
-    "$eq": { "foobar" : [ "1","2","3" ] },
     "$or": [ { "a" : 1 }, { "b" : 2, "c": 3 } ],
     "$and": [ { "$lt" : { "a" : 1 } }, { "$gt": { "b" : 2 } } ],
     "$orderby": { "hi REMOVE u._key IN users //": 1 },
@@ -60,7 +58,10 @@ var q12 = { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] }
 
 var q13 = { "testing": { $in: [1,2,3,4,5,6,7,8,9] } }
 
+var q14 = { }
 
-var res = builder('users', q7);
+
+// var res = builder('users', q7);
+var res = builder.graph('GRAPH_NEIGHBORS', 'userg', '34534534');
 console.log(res);
 process.exit();
