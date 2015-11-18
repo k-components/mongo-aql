@@ -4,7 +4,7 @@ var queryBuilder = require('../../lib/query-builder');
 var utils = require('../../lib/utils');
 
 helpers.register('table', function(table, values, query){
-	var re = /^[a-z0-9_-]+$/i;
+	var re = /^[a-z][a-z0-9_-]{0,63}$/i;
 	if (typeof table != 'string') throw new Error('Invalid table type: ' + typeof table);
 	if (!re.test(table)) throw new Error('Invalid table name: ' + table);
 
