@@ -34,17 +34,11 @@ var q3 = {
 	"@city": "cities"
 }
 
-var q4 = {
-    "$eq": { "foobar" : [ "1","2","3" ] }
-}
+var q4 = { "$eq": { "foobar" : [ "5","6","7" ] } }
 
-var q5 = {
-    "foobar": { "$eq" : [ "1","2","3" ] }
-}
+var q5 = { "foobar": { "$eq" : [ "1","2","3" ] } }
 
-var q6 = {
-    "foobar": [ "1","2","3" ] 
-}
+var q6 = { "foobar": [ "1","2","3" ] }
 
 var q7 = {
     "$ne": { "some": "value" }
@@ -54,6 +48,19 @@ var q8 = {
     "foobar": { "$in": 1 }
 }
 
-var res = builder('users', q4);
+var q9 = {
+    "foobar": { "x": { "y": { "z": "å" } } }
+}
+
+var q10 = { "foobar": { "x": { "y": { "$or": [ { "z": "å" }, { "z": "ä" }, { "z": "ö" } ] } } } }
+
+var q11 = { "$or": [ { "a" : 1 }, { "b" : 2, "c": 3 } ] }
+
+var q12 = { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] }
+
+var q13 = { "testing": { $in: [1,2,3,4,5,6,7,8,9] } }
+
+
+var res = builder('users', q13);
 console.log(res);
 process.exit();
