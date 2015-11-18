@@ -61,6 +61,6 @@ var q12 = { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] }
 var q13 = { "testing": { $in: [1,2,3,4,5,6,7,8,9] } }
 
 
-var res = builder('users', q6);
+var res = builder('users', q7);
 console.log(res);
 process.exit();
