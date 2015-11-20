@@ -62,6 +62,6 @@ var q14 = { }
 
 
 // var res = builder('users', q7);
-var res = builder.graph('GRAPH_NEIGHBORS', 'userg', '34534534');
+var res = builder.graph('neighbors', 'userg', '34534534');
 console.log(res);
 process.exit();
