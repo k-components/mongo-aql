@@ -43,7 +43,7 @@ var q7 = {
 }
 
 var q8 = {
-    "foobar": { "$in": 1 }
+    foobar: { $in: [1] }
 }
 
 var q9 = {
@@ -61,6 +61,6 @@ var q13 = { "testing": { $in: [1,2] } }
 var q14 = { "aaa": { $ne: null } }
 var q15 = { "aaa": { $eq: null } }
 
-console.log(builder('users', q14));
+console.log(builder('users', q10));
 
 process.exit();
