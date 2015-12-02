@@ -14,7 +14,11 @@ var utils = require('../lib/utils');
  * @param value  {Mixed}   - What the column should be equal to
  */
 conditionals.add('$equals', function(column, value, values, collection, original){
-  return column + ' ' + ((value == 'true' || value == 'false') ? 'is' : '==') + ' ' + value;
+  return column + ' == ' + value;
+});
+
+conditionals.add('$eq', function(column, value, values, collection, original){
+  return column + ' == ' + value;
 });
 
 /**
@@ -67,7 +71,7 @@ conditionals.add('$lte', function(column, value, values, collection, original){
  * @param column {String}  - Column name either table.column or column
  */
 conditionals.add('$null', function(column, value, values, collection, original){
-  return column + ' is' + (original === false ? ' not' : '') + ' null';
+  return column + ' ' + (original === false ? ' !=' : '==') + ' null';
 });
 
 /**
@@ -75,7 +79,7 @@ conditionals.add('$null', function(column, value, values, collection, original){
  * @param column {String}  - Column name either table.column or column
  */
 conditionals.add('$notNull', function(column, value, values, collection, original){
-  return column + ' is' + (original === false ? '' : ' not') + ' null';
+  return column + ' ' + (original === false ? '!=' : ' ==') + ' null';
 });
 
 /**
@@ -145,4 +149,3 @@ conditionals.add('$nin', { cascade: false }, function(column, set, values, colle
 
   // return column + ' not in (' + queryBuilder(set, values).toString() + ')';
 });
-

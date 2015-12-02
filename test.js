@@ -58,10 +58,9 @@ var q12 = { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] }
 
 var q13 = { "testing": { $in: [1,2] } }
 
-var q14 = { "aaa": "bbb" }
+var q14 = { "aaa": { $ne: null } }
+var q15 = { "aaa": { $eq: null } }
 
+console.log(builder('users', q14));
 
-var res = builder('users', q13);
-// var res = builder.graph('neighbors', 'userg', '34534534');
-console.log(res);
 process.exit();
