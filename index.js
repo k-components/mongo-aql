@@ -1,8 +1,6 @@
 
 require('./lib/normalize');
 
-var	build               = require('./lib/query-builder');
-
 // Register query types
 require('./helpers/query-types');
 
@@ -21,5 +19,5 @@ require('./helpers/query/return');
 // Register conditional helpers
 require('./helpers/conditional');
 
-module.exports = build;
+module.exports = require('./lib/query-builder');
 module.exports.graph = require('./lib/query-builder-graph');
