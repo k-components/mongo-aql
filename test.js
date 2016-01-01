@@ -61,7 +61,7 @@ var q13 = { "testing": { $in: [1,2] } }
 var q14 = { "aaa": { $ne: null } }
 var q15 = { "aaa": { $eq: null } }
 
-var q16 = { $text: { $search: "prefix:alice" , $field: 'local.username', $limit: 10 } }
+var q16 = { $text: { $search: "prefix:alice" , $field: 'local.username', $limit: 10 }, "aaa": { $ne: null } }
 
 console.log(builder('users', q16));
 

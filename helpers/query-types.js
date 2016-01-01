@@ -7,7 +7,7 @@ queryTypes.add( 'select', [
 , '{where} {limit} {order} {embed} {return}'
 ].join(' '));
 
-queryTypes.add('text', 'FOR document IN FULLTEXT({table} {text-field} {text-search} {text-limit}) RETURN document');
+queryTypes.add('text', 'FOR {alias} IN FULLTEXT({table} {text-field} {text-search} {text-limit}) {where} RETURN {alias}');
 
 //		peopleq1 = model.root.query 'auths_public', { $text: { $search: "prefix:#{n}" , $field: 'local.username', $limit: 10 } }
 //		"FOR document IN FULLTEXT(auths, 'local.username', 'prefix:Fhf') RETURN document"
