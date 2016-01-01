@@ -15,6 +15,7 @@ require('./helpers/query/columns');
 require('./helpers/query/table');
 require('./helpers/query/where');
 require('./helpers/query/return');
+require('./helpers/query/text');
 
 // Register conditional helpers
 require('./helpers/conditional');

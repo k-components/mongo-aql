@@ -2,64 +2,69 @@
 var queryTypes = require('../lib/query-types');
 
 queryTypes.add( 'select', [
-  'FOR'
+	'FOR'
 , '{alias} {table}'
 , '{where} {limit} {order} {embed} {return}'
 ].join(' '));
 
+queryTypes.add('text', 'FOR document IN FULLTEXT({table} {text-field} {text-search} {text-limit}) RETURN document');
+
+//		peopleq1 = model.root.query 'auths_public', { $text: { $search: "prefix:#{n}" , $field: 'local.username', $limit: 10 } }
+//		"FOR document IN FULLTEXT(auths, 'local.username', 'prefix:Fhf') RETURN document"
+
 /*
 queryTypes.add(
-  'insert'
+	'insert'
 , '{with} insert into {table} {columns} {values} {expression} {returning}'
 );
 
 queryTypes.add(
-  'update'
+	'update'
 , '{with} update {table} {values} {updates} {from} {where} {returning}'
 );
 
 queryTypes.add(
-  'delete'
+	'delete'
 , '{with} delete from {table} {where} {returning}'
 );
 
 queryTypes.add(
-  'remove'
+	'remove'
 , '{with} delete from {table} {alias} {where} {returning}'
 );
 
 queryTypes.add(
-  'create-table'
+	'create-table'
 , '{with} create table {ifNotExists} {table} ({definition})'
 );
 
 queryTypes.add(
-  'drop-table'
+	'drop-table'
 , '{with} drop table {ifExists} {table} {cascade}'
 );
 
 queryTypes.add(
-  'alter-table'
+	'alter-table'
 , 'alter table {ifExists} {only} {table} {action}'
 );
 
 queryTypes.add(
-  'create-view'
+	'create-view'
 , 'create {orReplace} {temporary} view {view} {columns} as {expression}'
 );
 
 queryTypes.add(
-  'union'
+	'union'
 , '{with} {queries}'
 );
 
 queryTypes.add(
-  'intersect'
+	'intersect'
 , '{with} {queries}'
 );
 
 queryTypes.add(
-  'except'
+	'except'
 , '{with} {queries}'
 );
 */
