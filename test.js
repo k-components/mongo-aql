@@ -63,6 +63,8 @@ var q15 = { "aaa": { $eq: null } }
 
 var q16 = { $text: { $search: "prefix:alice" , $field: 'local.username', $limit: 10 }, "aaa": { $ne: null } }
 
-console.log(builder('users', q16));
+var q17= { v: { '$gte': 2 } }
+
+console.log(builder('a-table', JSON.parse(process.argv[2])));
 
 process.exit();
