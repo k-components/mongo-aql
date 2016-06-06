@@ -117,5 +117,12 @@ describe('Built-In Query Types', function(){
       expect(query.values).eql({ v0: '_key', v1: ['abc', 'def'], v2: '_type' });
     });
 
+    it ('should build a query { "_key": [ "abc", "def" ] }', function(){
+      var query = builder('a-table', { "_key": [ "abc", "def" ] });
+
+      expect(query.query).eql('FOR c IN a-table FILTER c.@v0 == @v1 && c.@v2 == @v3 RETURN c');
+      expect(query.values).eql({ v0: '_key', v1: 'abc', v2: '_key', v3: 'def' });
+    });
+
   });
 });
