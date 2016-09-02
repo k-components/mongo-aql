@@ -114,11 +114,9 @@ conditionals.add('$ilike', function(column, value, values, collection, original)
  */
 conditionals.add('$in', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
-    return collection + '.' + utils.newVar(column, values) + ' in ' + utils.newVarArray(set, values);
-
-    return collection + '.' + utils.newVar(column, values) + ' in [' + set.map( function(val){
-      return utils.newVar(val, values)
-    }).join(', ') + ']';
+    var a = collection + '.' + utils.newVar(column, values),
+        b = utils.newVarArray(set, values);
+    return '(' + a + ' in ' + b + ' || length(intersection(' + a + ', ' + b + ')) > 0)';
   }
   else {
     return '';
