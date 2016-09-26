@@ -98,7 +98,7 @@ describe('Built-In Query Types', function(){
     it ('should build a query { "_key": { "$in": [ "abc", "def" ] } }', function(){
       var query = builder('a-table', { _key: { "$in": [ "abc", "def" ] } });
 
-      expect(query.query).eql('FOR c IN a-table FILTER c.@v0 in @v1 || length(intersection(c.@v0, @v1)) > 0 RETURN c');
+      expect(query.query).eql('FOR c IN a-table FILTER c.@v0 IN @v1 OR c.@v0 ANY IN @v1 RETURN c');
       expect(query.values).eql({ v0: '_key', v1: [ "abc", "def" ] });
     });
 
@@ -113,7 +113,7 @@ describe('Built-In Query Types', function(){
     it ('should build a query { "_key": { "$in": [ "abc", "def" ] }, "_type": { "$ne": null } }', function(){
       var query = builder('a-table', { "_key": { "$in": [ "abc", "def" ] }, "_type": { "$ne": null } });
 
-      expect(query.query).eql('FOR c IN a-table FILTER (c.@v0 in @v1 || length(intersection(c.@v0, @v1)) > 0) && c.@v2 != null RETURN c');
+      expect(query.query).eql('FOR c IN a-table FILTER (c.@v0 IN @v1 OR c.@v0 ANY IN @v1) && c.@v2 != null RETURN c');
       expect(query.values).eql({ v0: '_key', v1: ['abc', 'def'], v2: '_type' });
     });
 

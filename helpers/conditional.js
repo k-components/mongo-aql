@@ -116,13 +116,11 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
-    return '(' + a + ' in ' + b + ' || length(intersection(' + a + ', ' + b + ')) > 0)';
+    return '(' + a + ' IN ' + b + ' OR ' + a + ' ANY IN ' + b + ')';
   }
   else {
     return '';
   }
-
-  // return utils.newVar(column, values) + ' in [' + queryBuilder(set, values).toString() + ']';
 });
 
 /**
@@ -139,13 +137,11 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
  */
 conditionals.add('$nin', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
-    return utils.newVar(column, values) + ' not in (' + set.map( function(val){
-      return utils.newVar(val, values)
-    }).join(', ') + ')';
+    var a = collection + '.' + utils.newVar(column, values),
+        b = utils.newVarArray(set, values);
+    return '(' + a + ' NOT IN ' + b + ' AND ' + a + ' NONE IN ' + b + ')';
   }
   else {
     return '';
   }
-
-  // return column + ' not in (' + queryBuilder(set, values).toString() + ')';
 });
