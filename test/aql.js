@@ -87,6 +87,27 @@ describe('Built-In Query Types', function(){
       expect(query.values).eql({ v0: 'v', v1: 2 });
     });
 
+    it ('should build a query { "$gte": { "v": 2 }, "$orderby": { "created": -1 } }', function(){
+      var query = builder('a-table', { "$gte": { "v": 2 }, "$orderby": { "created": -1 } });
+
+      expect(query.query).eql('FOR c IN a-table FILTER c.@v0 >= @v1 SORT c.@v2 DESC RETURN c');
+      expect(query.values).eql({ v0: 'v', v1: 2, v2: "created" });
+    });
+
+    it ('should build a query {"$text":{"$search":"prefix:isis","$field":"data","$limit":10},"status":"published"}', function(){
+      var query = builder('a-table', {"$text":{"$search":"prefix:isis","$field":"data","$limit":10},"status":"published"});
+
+      expect(query.query).eql('FOR c IN FULLTEXT(a-table , @v0 , @v1 , @v2) FILTER c.@v3 == @v4 RETURN c');
+      expect(query.values).eql({ v0: 'data',  v1: 'prefix:isis',  v2: 10,  v3: 'status',  v4: 'published' });
+    });
+
+    it ('should build a query {"$text":{"$search":"prefix:isis","$field":"data","$limit":10},"status":"published","$orderby":{"created":-1}}', function(){
+      var query = builder('a-table', {"$text":{"$search":"prefix:isis","$field":"data","$limit":10},"status":"published","$orderby":{"created":-1}});
+
+      expect(query.query).eql('FOR c IN FULLTEXT(a-table , @v0 , @v1 , @v2) FILTER c.@v3 == @v4 SORT c.@v5 DESC RETURN c');
+      expect(query.values).eql({ v0: 'data',  v1: 'prefix:isis',  v2: 10,  v3: 'status',  v4: 'published',  v5: 'created' });
+    });
+
     it ('should build a query { "foobar": { "x": { "y": { "$or": [ { "z": "å" }, { "z": "ä" }, { "z": "ö" } ] } } } }', function(){
       var query = builder('a-table', { "foobar": { "x": { "y": { "$or": [ { "z": "å" }, { "z": "ä" }, { "z": "ö" } ] } } } });
 
