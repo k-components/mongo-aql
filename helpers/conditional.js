@@ -145,3 +145,12 @@ conditionals.add('$nin', { cascade: false }, function(column, set, values, colle
     return '';
   }
 });
+
+conditionals.add('$exists', function(column, value, values, collection, original){
+  if (value) {
+    return "NOT_NULL(" + column + ")";
+  }
+  else {
+    return "!NOT_NULL(" + column + ")";
+  }
+});
