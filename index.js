@@ -21,5 +21,4 @@ require('./helpers/query/text');
 require('./helpers/conditional');
 
 module.exports = require('./lib/query-builder');
-module.exports.edges = require('./lib/query-builder-graph').edges;
-module.exports.edge = require('./lib/query-builder-graph').edge;
+module.exports.neighbors = require('./lib/query-builder-graph').neighbors;
