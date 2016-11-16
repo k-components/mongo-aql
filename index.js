@@ -22,3 +22,4 @@ require('./helpers/conditional');
 
 module.exports = require('./lib/query-builder');
 module.exports.neighbors = require('./lib/query-builder-graph').neighbors;
+module.exports.edge = require('./lib/query-builder-graph').edge;
