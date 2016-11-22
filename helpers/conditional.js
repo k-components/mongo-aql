@@ -126,6 +126,8 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
 /**
  * Querying where column is not in a set
  *
+ * NOTE: column should be an array. Use $notin if column is a scalar value.
+ *
  * Values
  * - String, no explaination necessary
  * - Array, joins escaped values with a comma
@@ -140,6 +142,20 @@ conditionals.add('$nin', { cascade: false }, function(column, set, values, colle
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
     return '(' + a + ' NOT IN ' + b + ' AND ' + a + ' NONE IN ' + b + ')';
+  }
+  else {
+    return '';
+  }
+});
+
+/**
+ * Same as $nin, except the column can be a scalar value, not an array like in $nin.
+ */
+conditionals.add('$notin', { cascade: false }, function(column, set, values, collection, original){
+  if (Array.isArray(set)) {
+    var a = collection + '.' + utils.newVar(column, values),
+        b = utils.newVarArray(set, values);
+    return '(' + a + ' NOT IN ' + b + ')';
   }
   else {
     return '';
