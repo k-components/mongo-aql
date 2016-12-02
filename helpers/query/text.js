@@ -11,5 +11,5 @@ helpers.register('text-limit', function(val, values){
 });
 
 helpers.register('text-search', function(val, values){
-	return ", " + utils.newVar(val, values);
+	return ", " + utils.newVar(val, values, '', true);
 });
