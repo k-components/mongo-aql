@@ -116,6 +116,22 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
+    return '(' + a + ' IN ' + b + ')';
+  }
+  else {
+    return '';
+  }
+});
+
+/**
+ *
+ * same as $in, but the column can be an array
+ *
+ */
+conditionals.add('$arrayin', { cascade: false }, function(column, set, values, collection, original){
+  if (Array.isArray(set)) {
+    var a = collection + '.' + utils.newVar(column, values),
+        b = utils.newVarArray(set, values);
     return '(' + a + ' IN ' + b + ' OR ' + a + ' ANY IN ' + b + ')';
   }
   else {
@@ -137,11 +153,11 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
  * @param column {String}  - Column name either table.column or column
  * @param value  {Mixed}   - String|Array|Function
  */
-conditionals.add('$nin', { cascade: false }, function(column, set, values, collection, original){
+conditionals.add('$notin', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
-    return '(' + a + ' NOT IN ' + b + ' AND ' + a + ' NONE IN ' + b + ')';
+    return '(' + a + ' NOT IN ' + b + ')';
   }
   else {
     return '';
@@ -149,13 +165,13 @@ conditionals.add('$nin', { cascade: false }, function(column, set, values, colle
 });
 
 /**
- * Same as $nin, except the column can be a scalar value, not an array like in $nin.
+ * Same as $notin, but the column can be an array
  */
-conditionals.add('$notin', { cascade: false }, function(column, set, values, collection, original){
+conditionals.add('$arraynotin', { cascade: false }, function(column, set, values, collection, original){
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
-    return '(' + a + ' NOT IN ' + b + ')';
+    return '(' + a + ' NOT IN ' + b + ' AND ' + a + ' NONE IN ' + b + ')';
   }
   else {
     return '';
