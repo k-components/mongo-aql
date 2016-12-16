@@ -123,6 +123,10 @@ conditionals.add('$in', { cascade: false }, function(column, set, values, collec
   }
 });
 
+conditionals.add('$inflipped', { cascade: false }, function(column, set, values, collection, original){
+  return '(' + set + ' IN ' + column + ')';
+});
+
 /**
  *
  * same as $in, but the column can be an array
@@ -132,7 +136,7 @@ conditionals.add('$arrayin', { cascade: false }, function(column, set, values, c
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
-    return '(' + a + ' IN ' + b + ' OR ' + a + ' ANY IN ' + b + ')';
+    return '(' + a + ' ANY IN ' + b + ')';
   }
   else {
     return '';
@@ -171,7 +175,7 @@ conditionals.add('$arraynotin', { cascade: false }, function(column, set, values
   if (Array.isArray(set)) {
     var a = collection + '.' + utils.newVar(column, values),
         b = utils.newVarArray(set, values);
-    return '(' + a + ' NOT IN ' + b + ' AND ' + a + ' NONE IN ' + b + ')';
+    return '(' + a + ' NONE IN ' + b + ')';
   }
   else {
     return '';
