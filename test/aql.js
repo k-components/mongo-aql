@@ -145,5 +145,33 @@ describe('Built-In Query Types', function(){
       expect(query.values).eql({ '@v0': "a-table", v1: '_key', v2: 'abc', v3: '_key', v4: 'def' });
     });
 
+    it ('should build a query { $exists: "x"} }', function(){
+      var query = builder('a-table', { $exists: "x" } );
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER NOT_NULL(c.@v1) RETURN c');
+      expect(query.values).eql({ '@v0': "a-table", v1: 'x' });
+    });
+
+    it ('should build a query { $or: [ { $exists: "x"}, { $exists: "y"} ] }', function(){
+      var query = builder('a-table', { $or: [ { $exists: "x"}, { $exists: "y"} ] });
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER NOT_NULL(c.@v1) || NOT_NULL(c.@v2) RETURN c');
+      expect(query.values).eql({ '@v0': "a-table", v1: 'x', v2: 'y' });
+    });
+
+    it ('should build a query { $and: [ { $exists: "x"}, { $exists: "y"} ], z: 3 }', function(){
+      var query = builder('a-table', { $and: [ { $exists: "x"}, { $exists: "y"} ], z: 3 });
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER (NOT_NULL(c.@v1) && NOT_NULL(c.@v2)) && c.@v3 == @v4 RETURN c');
+      expect(query.values).eql({ '@v0': "a-table", v1: 'x', v2: 'y' , v3: 'z' , v4: 3 });
+    });
+
+    it ('should build a query { $or: [ { $exists: "x"}, { $exists: "y"} ], z: 3 }', function(){
+      var query = builder('a-table', { $or: [ { $exists: "x"}, { $exists: "y"} ], z: 3 });
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER (NOT_NULL(c.@v1) || NOT_NULL(c.@v2)) && c.@v3 == @v4 RETURN c');
+      expect(query.values).eql({ '@v0': "a-table", v1: 'x', v2: 'y' , v3: 'z' , v4: 3 });
+    });
+
   });
 });
