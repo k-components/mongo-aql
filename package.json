@@ -1,6 +1,6 @@
 {
   "name": "mongo-aql",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "A mongo-like interface for aql generation",
   "main": "index.js",
   "directories": {
@@ -20,7 +20,9 @@
     "aql"
   ],
   "author": "Ilkka Huotari",
-  "contributors": ["John Fawcett"],
+  "contributors": [
+    "John Fawcett"
+  ],
   "license": "BSD",
   "devDependencies": {
     "expect.js": "*",
