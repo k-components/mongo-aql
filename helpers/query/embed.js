@@ -3,7 +3,7 @@ var helpers = require('../../lib/query-helpers'),
 	utils = require('../../lib/utils');
 
 helpers.register('embed', function(embed, values, query) {
-	res = ''
+	var res = ''
 
 	if (embed && embed.length) {
 		for (var i = 0; i < embed.length; i++) {

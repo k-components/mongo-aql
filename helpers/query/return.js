@@ -3,7 +3,7 @@ var helpers = require('../../lib/query-helpers');
 
 helpers.register('return', function(embed, values, query) {
 	var embed = query.embed;
-	res = 'RETURN '
+	var res = 'RETURN '
 
 	if (embed && embed.length) {
 		res += 'MERGE(' + query.__defaultTable;
