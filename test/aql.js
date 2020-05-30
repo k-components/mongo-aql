@@ -123,6 +123,13 @@ describe('Built-In Query Types', function(){
       expect(query.values).eql({ '@v0': "users", v1: '_key', v2: [ "abc", "def" ] });
     });
 
+    it ('should build a query { "_key": { "$notin": [ "abc", "def" ] } }', function(){
+      var query = builder('users', { _key: { "$notin": [ "abc", "def" ] } });
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER c.@v1 NOT IN @v2 RETURN c');
+      expect(query.values).eql({ '@v0': "users", v1: '_key', v2: [ "abc", "def" ] });
+    });
+
 
     it ('should build a query { "_type": { "$ne": null } }', function(){
       var query = builder('users', { "_type": { "$ne": null } });
