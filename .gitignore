@@ -4,3 +4,4 @@ jam/
 build/
 npm-debug*
 *~
+package-lock.json
