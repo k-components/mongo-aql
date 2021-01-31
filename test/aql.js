@@ -66,6 +66,13 @@ describe('Built-In Query Types', function(){
       expect(query.values).eql({ '@v0': "users", v1: 'a', v2: 1, v3: 'b', v4: 2, v5: 'c', v6: 3 });
     });
 
+    it ('should build a query { "$or": [ [ { "a" : 1 }, { "b" : 2 } ], [ { "c" : 3 }, { "d": 4 } ] ] }', function(){
+      var query = builder('users', { "$or": [ [ { "a" : 1 }, { "b" : 2 } ], [ { "c" : 3 }, { "d": 4 } ] ] });
+
+      expect(query.query).eql('FOR c IN @@v0 FILTER (c.@v1 == @v2 && c.@v3 == @v4) || (c.@v5 == @v6 && c.@v7 == @v8) RETURN c');
+      expect(query.values).eql({ '@v0': "users", v1: 'a', v2: 1, v3: 'b', v4: 2, v5: 'c', v6: 3, v7: 'd', v8: 4 });
+    });
+
     it ('should build a query { "$and": [ { "$lt" : { "a" : 1 } }, { "$gt": { "b" : 2 } } ] }', function(){
       var query = builder('users', { "$and": [ { "$lt" : { "a" : 1 } }, { "$gt": { "b" : 2 } } ] });
 
