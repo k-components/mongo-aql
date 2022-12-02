@@ -1,6 +1,6 @@
 {
   "name": "mongo-aql",
-  "version": "0.5.19",
+  "version": "0.5.20",
   "description": "A mongo-like interface for aql generation",
   "main": "index.js",
   "directories": {
