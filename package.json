@@ -2,7 +2,7 @@
   "name": "mongo-aql",
   "version": "0.5.20",
   "description": "A mongo-like interface for aql generation",
-  "main": "index.js",
+  "main": "index.cjs",
   "directories": {
     "test": "test"
   },
@@ -27,5 +27,7 @@
   "devDependencies": {
     "expect.js": "*",
     "mocha": "*"
-  }
+  },
+  "type": "module",
+  "module": "index.js"
 }
